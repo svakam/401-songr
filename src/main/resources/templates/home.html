@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <h1 th:text="${username}">Hello, world!</h1>
+    <header th:replace="../fragments/header.html :: header"></header>
+<h1>Welcome to my first Spring Framework webpage! Head over to Albums to check out some albums.</h1>
 </body>
 </html>
