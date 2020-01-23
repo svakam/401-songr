@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Capitalize!</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<header th:replace="../fragments/header.html :: header"></header>
-<h1 th:text="${input}">Default</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Capitalize!</title>
+        <!--  Contribution from Google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Fjord+One&display=swap" rel="stylesheet">
+        <link href="/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <header th:replace="../fragments/header.html :: header"></header>
+        <h1 th:text="${input}">Default</h1>
+    </body>
 </html>

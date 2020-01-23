@@ -30,12 +30,13 @@ public class SongrController {
     // albums route
     @GetMapping("/albums")
     public String getAlbums(Model m) {
+        // image links are possible thanks to Wikipedia
         Album[] albumarray = {
                 new Album("Rubber Soul", "The Beatles", 13, 20489, "https://upload.wikimedia.org/wikipedia/en/7/74/Rubber_Soul.jpg"),
-            new Album("1984", "Van Halen", 8, 19383, "https://upload.wikimedia.org/wikipedia/en/5/5f/Van_Halen_-_1984.jpg"),
-            new Album("Currents", "Tame Impala", 10, 18372, "https://upload.wikimedia.org/wikipedia/en/9/9b/Tame_Impala_-_Currents.png"),
+                new Album("1984", "Van Halen", 8, 19383, "https://upload.wikimedia.org/wikipedia/en/5/5f/Van_Halen_-_1984.jpg"),
+                new Album("Currents", "Tame Impala", 10, 18372, "https://upload.wikimedia.org/wikipedia/en/9/9b/Tame_Impala_-_Currents.png"),
         };
+        m.addAttribute("albumarray", albumarray);
         return "albums";
     }
 }
-
