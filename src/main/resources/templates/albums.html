@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Albums</title>
+        <!--  Contribution from Google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Fjord+One&display=swap" rel="stylesheet">
+        <link href="/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <header th:replace="../fragments/header.html :: header"></header>
+        <h1>Albums</h1>
+        <section>
+            <article th:each="album : ${albumarray}">
+                <h2 th:text="${album.title}">Album title</h2>
+                <h3 th:text="${album.artist}">Album artist</h3>
+                <p th:text="${album.songCount} + ' songs'">Album song count</p>
+                <p th:text="'Length: ' + ${album.length} + ' seconds'">Album length (seconds)</p>
+                <img th:src="${album.imageUrl}" />
+            </article>
+        </section>
+    </body>
+</html>
