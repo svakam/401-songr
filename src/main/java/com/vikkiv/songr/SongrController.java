@@ -2,6 +2,8 @@ package com.vikkiv.songr;
 
 import com.vikkiv.songr.model.Album;
 import com.vikkiv.songr.model.AlbumRepository;
+import com.vikkiv.songr.model.Song;
+import com.vikkiv.songr.model.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,9 @@ public class SongrController {
 
     @Autowired
     AlbumRepository albumRepository;
+
+    @Autowired
+    SongRepository songRepository;
 
     // get home route
     @GetMapping("/")
@@ -50,6 +55,17 @@ public class SongrController {
     public RedirectView addAlbum(String title, String artist, int songCount, int length, String imageUrl) {
         Album newAlbum = new Album(title, artist, songCount, length, imageUrl);
         albumRepository.save(newAlbum);
+        return new RedirectView("/albums");
+    }
+
+    @PostMapping("/albums/{id}/songs")
+    public RedirectView addSong(@PathVariable Long id, String title, int length, int trackNumber) {
+        Song song = new Song(title, length, trackNumber);
+        // link song and album
+        Album album = albumRepository.getOne(id);
+        song.setEntry(album);
+        songRepository.save(song);
+
         return new RedirectView("/albums");
     }
 
