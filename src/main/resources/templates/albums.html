@@ -9,7 +9,7 @@
     </head>
     <body>
         <header th:replace="../fragments/header.html :: header"></header>
-        <h1>Albums</h1>
+        <h1>Your Albums</h1>
         <section>
             <article th:each="album : ${albumarray}">
                 <h2 th:text="${album.title}">Album title</h2>
@@ -19,5 +19,14 @@
                 <img th:src="${album.imageUrl}" />
             </article>
         </section>
+        <h2>Add an album</h2>
+        <form method="POST" action="/albums">
+            <label>Title <input name="title" /></label>
+            <label>Artist <input name="artist" /></label>
+            <label>Song Count <input name="songCount" /></label>
+            <label>Album Length <input name="length" /></label>
+            <label>Album image <input name="imageUrl" /></label>
+            <input type="submit"/>
+        </form>
     </body>
 </html>

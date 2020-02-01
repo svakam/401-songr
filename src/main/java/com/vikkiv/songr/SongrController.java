@@ -1,42 +1,61 @@
 package com.vikkiv.songr;
 
+import com.vikkiv.songr.model.Album;
+import com.vikkiv.songr.model.AlbumRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 public class SongrController {
 
-    // home route
+    @Autowired
+    AlbumRepository albumRepository;
+
+    // get home route
     @GetMapping("/")
     public String getHome(Model m) {
         return "home";
     }
 
-    // hello route
+    // get hello route
     @GetMapping("/hello")
     public String getHello(Model m) {
         return "hello";
     }
 
-    // capitalize route with variable param
+    // get capitalize route with variable param
     @GetMapping("/capitalize/{input}")
     public String getCapitalize(@PathVariable String input, Model m) {
         m.addAttribute("input", input.toUpperCase());
         return "capitalized";
     }
 
-    // albums route
+    // get albums route
     @GetMapping("/albums")
     public String getAlbums(Model m) {
-        // image links are possible thanks to Wikipedia
-        Album[] albumarray = {
-                new Album("Rubber Soul", "The Beatles", 13, 20489, "https://upload.wikimedia.org/wikipedia/en/7/74/Rubber_Soul.jpg"),
-                new Album("1984", "Van Halen", 8, 19383, "https://upload.wikimedia.org/wikipedia/en/5/5f/Van_Halen_-_1984.jpg"),
-                new Album("Currents", "Tame Impala", 10, 18372, "https://upload.wikimedia.org/wikipedia/en/9/9b/Tame_Impala_-_Currents.png"),
-        };
+        List<Album> albumarray = albumRepository.findAll();
         m.addAttribute("albumarray", albumarray);
         return "albums";
+    }
+
+    // post added album route
+    @PostMapping("/albums")
+    public RedirectView addAlbum(String title, String artist, int songCount, int length, String imageUrl) {
+        Album newAlbum = new Album(title, artist, songCount, length, imageUrl);
+        albumRepository.save(newAlbum);
+        return new RedirectView("/albums");
+    }
+
+    // error
+    @GetMapping("/error")
+    public String getError() {
+        return "error";
     }
 }
