@@ -9,20 +9,28 @@ nav {
     padding: 5px;
 }
 
-nav a {
-    padding-left: 10px;
-    padding-right: 10px;
+a {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     text-decoration: none;
     color: lightyellow;
     border: 1px solid #60d;
     border-radius: 10px;
-    background-color: #a0f;
+    background-color: #40b;
 }
 
-body h1, h2, h3, section {
+body h1, h2, h3, section, #linkalbums {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+#linkalbums {
+    height: 50px;
+    font-weight: bold;
 }
 
 article {
@@ -34,6 +42,17 @@ article {
     border: 3px solid;
     position: relative;
     top: 0px;
+    animation-name: fadein;
+    animation-duration: 0.8s;
+}
+
+#hello {
+    font-size: 500%;
+    animation-name: fadein;
+    animation-duration: 0.8s;
+}
+
+#slogan {
     animation-name: fadein;
     animation-duration: 0.8s;
 }
