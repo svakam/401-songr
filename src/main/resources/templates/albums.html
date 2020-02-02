@@ -17,12 +17,14 @@
                 <p th:text="${album.songCount} + ' songs'">Album song count</p>
                 <p th:text="'Length: ' + ${album.length} + ' seconds'">Album length (seconds)</p>
                 <img th:src="${album.imageUrl}" />
-            </article>
-            <form th:action="${'/albums/' + song.id + '/songs'}" method="POST">
-                <input type="text" name="title"/>
-                <input type="text" name="length"/>
-                <input type="text" name="trackNumber"/>
+            <h2>Add a song to this album</h2>
+            <form th:action="${'/albums/' + album.id + '/songs'}" method="POST">
+                <label>Song title <input type="text" name="title"/></label>
+                <label>Song  <input type="text" name="length"/></label>
+                <label>Track number <input type="text" name="trackNumber"/></label>
+                <input type="submit"/>
             </form>
+            </article>
         </section>
         <h2>Add an album</h2>
         <form method="POST" action="/albums">
