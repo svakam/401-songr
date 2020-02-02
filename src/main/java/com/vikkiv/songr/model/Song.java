@@ -15,7 +15,7 @@ public class Song {
 
     // the name of this instance variable is used as the mappedBy value in the Album class
     @ManyToOne
-    Album song;
+    Album album;
 
     public Song() {}
 
@@ -23,6 +23,10 @@ public class Song {
         this.title = title;
         this.length = length;
         this.trackNumber = trackNumber;
+    }
+
+    public void setEntry(Album album) {
+        this.album = album;
     }
 
     public String getTitle() {
